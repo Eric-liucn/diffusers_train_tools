@@ -28,7 +28,12 @@ pip3 install distro
 ```
 Clone this repo:
 ```
-git clone 
+git clone https://github.com/Eric-liucn/diffusers_train_tools.git
+```
+Run the script
+```
+cd diffusers_train_tools
+python3 start.py
 ```
 
 
