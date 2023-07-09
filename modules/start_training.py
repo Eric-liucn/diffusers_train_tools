@@ -159,7 +159,7 @@ def start(project_path=None, train_env_path=None, train_config_path=None, train_
     # we use python to start training
     elif train_type == "[4] [TPU]dreambooth" or train_type == "[5] [TPU]text-to-image":
         # construct command
-        command = python_exec + " " + train_script_path + " ".join(args)
+        command = python_exec + " " + train_script_path + " " + " ".join(args)
     else:
         logging.error("Invalid train_type, exiting...")
         exit(1)
