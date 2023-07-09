@@ -49,10 +49,8 @@ def install_backend(pip_executable, backend):
 def create_virtual_env(train_env_path):
     # if system is ubuntu or debian, we can use apt-get
     # install python3-venv
-    distro_name = distro.linux_distribution()[0].toLowerCase()
-    if distro_name == "ubuntu" or distro_name == "debian":
-        subprocess.run(["sudo", "apt-get", "update"])
-        subprocess.run(["sudo", "apt-get", "install","-y", "python3-venv"])
+    subprocess.run(["sudo", "apt-get", "update"])
+    subprocess.run(["sudo", "apt-get", "install","-y", "python3-venv"])
     
     # create virtual environment
     subprocess.run(["python3", "-m", "venv", train_env_path])
