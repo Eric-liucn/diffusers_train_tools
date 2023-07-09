@@ -38,10 +38,11 @@ def start():
     # ask user where to create the project
     # the path must be empty
     # default path is user home dir + project name
+    # the path can be not exists, if not exists, create the folder
     project_path = questionary.text(
         "Where do you want to create the project?",
         default=home_path + "/" + project_name,
-        validate=lambda text: Path(text).is_dir() and len(list(Path(text).iterdir())) == 0,
+        validate=lambda text: len(list(Path(text).iterdir())) == 0,
         instruction="The path must be empty"
     ).ask()
 
