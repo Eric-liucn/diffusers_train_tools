@@ -32,9 +32,7 @@ def start():
         "What is the project name?",
         default="my_project",
         validate=lambda text: text.isalnum() or text.isascii(),
-        message={
-            "invalid": "Project name should not contain space and special characters"
-        }
+        message="The project name should not contain space and special characters"
     ).ask()
 
     # ask user where to create the project
@@ -44,9 +42,7 @@ def start():
         "Where do you want to create the project?",
         default=home_path + "/" + project_name,
         validate=lambda text: Path(text).is_dir() and len(list(Path(text).iterdir())) == 0,
-        message={
-            "invalid": "The path must be empty"
-        }
+        message="The path must be empty"
     ).ask()
 
     # if project path not exist, create the folder, if parent dir not exists, create them too
@@ -86,9 +82,7 @@ def start():
             "Where do you want to create the training environment?",
             default=project_path + "/training_env",
             validate=lambda text: not Path(text).exists() or (Path(text).is_dir() and len(list(Path(text).iterdir())) == 0),
-            message={
-                "invalid": "The path must be empty or not exist"
-            }
+            message="The path must be empty or not exist"
         ).ask()
 
         import modules.create_training_env as create_training_env
@@ -110,9 +104,7 @@ def start():
             "Where do you want to create the train config?",
             default=project_path + "/train_config.yaml",
             validate=lambda text: not Path(text).exists(),
-            message={
-                "invalid": "The file already exists"
-            }
+            message="The path must be not exist"
         ).ask()
 
         import modules.create_train_config as create_train_config
