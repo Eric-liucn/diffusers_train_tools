@@ -169,12 +169,12 @@ def start(project_path=None, train_env_path=None, train_config_path=None, train_
     # ask if user want to start training
     if questionary.confirm("Do you want to start training?").ask():
         # start training, create a screen session named with project name + _train and run command
+        # catch the output of the screen session to project_path + /train.log
         project_name = pathlib.Path(project_path).name
-        subprocess.run(["screen", "-dmS", project_name + "_train", command])
+        subprocess.run(["screen", "-dmS", project_name + "_train", command, ">", project_path + "/train.log"])
         print("Training started, you can use `screen -r " + project_name + "_train` to attach to the screen session")
         
     
-
     
     
     
