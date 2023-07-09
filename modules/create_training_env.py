@@ -67,9 +67,7 @@ def start(train_env_path=None, train_type=None):
             "Where do you want to create the training environment?",
             default=home_path + "/training_env",
             validate=lambda text: pathlib.Path(text).is_dir() and len(list(pathlib.Path(text).iterdir())) == 0,
-            message={
-                "invalid": "The path must be empty"
-            }
+            instruction="The path must be a directory and must be empty"
         ).ask()
     else:
         # check if train_env_path is empty
