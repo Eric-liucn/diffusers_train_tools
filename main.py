@@ -1,5 +1,5 @@
 import questionary
-import platform
+import distro
 import os
 import logging
 import logging_config
@@ -10,9 +10,12 @@ logging_config.configure_logging(log_level=logging.INFO, log_file="setup.log")
 # system detection
 # check if system is Ubuntu
 def system_check():
-    if platform.system() == "Linux":
+    # verify if system is ubuntu or debian
+    if distro.like() == "ubuntu" or distro.like() == "debian":
         return True
     else:
+        logging.error("System is not Ubuntu or Debian")
+        exit(1)
         return False
 
 
@@ -42,13 +45,5 @@ def start():
 
 
 if __name__ == '__main__':
-    # check if system is Linux, if not, log error and exit
-    if system_check() == False:
-        logging.error("System is not Linux, exiting...")
-        exit()
-    
-    # check if system is Ubuntu, if not, log warning
-    if platform.dist()[0] != "Ubuntu":
-        logging.warning("This scipt only tested on Ubuntu, some packages may not work properly")
-
+    system_check()
     start()
