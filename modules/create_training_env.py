@@ -6,6 +6,8 @@ import pathlib
 import distro
 import subprocess
 
+from utils.util_tools import is_folder_empty_or_nonexistent
+
 # config logging
 logging_config.configure_logging()
 
@@ -66,14 +68,9 @@ def start(train_env_path=None, train_type=None):
         train_env_path = questionary.text(
             "Where do you want to create the training environment?",
             default=home_path + "/training_env",
-            validate=lambda text: pathlib.Path(text).is_dir() and len(list(pathlib.Path(text).iterdir())) == 0,
+            validate=lambda text: is_folder_empty_or_nonexistent(text),
             instruction="The path must be a directory and must be empty"
         ).ask()
-    else:
-        # check if train_env_path is empty
-        if len(list(pathlib.Path(train_env_path).iterdir())) != 0:
-            logging.error("The training env path must be empty")
-            exit()
     
     # ask the train type if not specified
     if train_type == None:
