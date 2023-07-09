@@ -195,13 +195,13 @@ def start(project_path=None, train_config_path=None):
         validate=lambda text: text.isalnum() or text.isascii(),
     ).ask()
 
-    lr_scheduler = questionary.Choice(
+    lr_scheduler = questionary.select(
         "lr_scheduler",
         choices=["constant", "linear", "cosine", "cosine_with_restarts", "polynomial", "polynomial_with_restarts", "constant_with_warmup"],
         default="constant",
     ).ask()
 
-    mixed_precision = questionary.Choice(
+    mixed_precision = questionary.select(
         "mixed_precision",
         choices=["no", "fp16", "bf16"],
         default="no",
