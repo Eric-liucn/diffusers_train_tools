@@ -1,6 +1,7 @@
 from pathlib import Path
 import questionary
 import logging_config
+from utils.util_tools import is_folder_empty_or_nonexistent
 
 # config logging
 logging_config.configure_logging()
@@ -42,7 +43,7 @@ def start():
     project_path = questionary.text(
         "Where do you want to create the project?",
         default=home_path + "/" + project_name,
-        validate=lambda text: len(list(Path(text).iterdir())) == 0,
+        validate=lambda text: is_folder_empty_or_nonexistent(text),
         instruction="The path must be empty"
     ).ask()
 
@@ -82,7 +83,7 @@ def start():
         train_env_path = questionary.text(
             "Where do you want to create the training environment?",
             default=project_path + "/training_env",
-            validate=lambda text: not Path(text).exists() or (Path(text).is_dir() and len(list(Path(text).iterdir())) == 0),
+            validate=lambda text: is_folder_empty_or_nonexistent(text),
             instruction="The path must be empty or not exist"
         ).ask()
 

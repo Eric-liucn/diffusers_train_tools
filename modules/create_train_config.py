@@ -1,19 +1,24 @@
 import pathlib
 import questionary
 
+from utils.util_tools import is_folder
+
 def start(project_path=None, train_config_path=None, train_type=None):
     # if project_path is not specified, ask user where to create the project
     if project_path == None:
         project_path = questionary.text(
             "Where is the project?",
-            default=str(pathlib.Path.home()) + "/project"
+            default=str(pathlib.Path.home()) + "/project",
+            validate=lambda text: is_folder(text)
         ).ask()
 
     # if config_path is not specified, ask user where to store the config file
+    # the path should not exist
     if train_config_path == None:
         train_config_path = questionary.text(
             "Where do you want to store the config file?",
-            default=str(pathlib.Path.home()) + "/project/train_config.json"
+            default=str(pathlib.Path.home()) + "/project/train_config.json",
+            validate=lambda text: not pathlib.Path(text).exists(),
         ).ask()
     
     # if train_type is not specified, ask user to choose a train type
