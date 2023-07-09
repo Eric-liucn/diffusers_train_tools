@@ -33,9 +33,13 @@ git clone https://github.com/Eric-liucn/diffusers_train_tools.git
 Run the script
 ```
 cd diffusers_train_tools
-python3 start.py
+python3 main.py
 ```
 
+One line command:
+```
+python3 --version && pip3 install questionary distro && git clone https://github.com/Eric-liucn/diffusers_train_tools.git && cd diffusers_train_tools && python3 main.py
+```
 
 ## Status
 
