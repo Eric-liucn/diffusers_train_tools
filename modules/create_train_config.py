@@ -39,10 +39,10 @@ def start(project_path=None, train_config_path=None, train_type=None):
     # user configs/dreambooth-lora-config's start(project_path)
     if train_type == "[1] [GPU]dreambooth-lora":
         from configs.dreambooth_lora_config import start
-        start(train_config_path)
+        start(project_path, train_config_path)
     elif train_type == "[5] [TPU]text-to-image":
         from configs.text_to_image_tpu_config import start
-        start(train_config_path)
+        start(project_path, train_config_path)
     
     return train_config_path
 

@@ -155,19 +155,19 @@ def start(project_path=None, train_config_path=None):
 
     pretrained_model_name_or_path = questionary.text(
         "pretrained_model_name_or_path",
-        default="None",
+        default="",
         validate=lambda text: text.isalnum() or text.isascii(),
     ).ask()
 
     dataset_name = questionary.text(
         "dataset_name",
-        default="None",
+        default="",
         validate=lambda text: text.isalnum() or text.isascii(),
     ).ask()
 
     output_dir = questionary.text(
         "output_dir",
-        default="sd-model-finetuned",
+        default=project_path + "/output",
         validate=lambda text: text.isalnum() or text.isascii(),
     ).ask()
 
